@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <meta name="description" content="A focus timer using the Pomodoro technique: focus sessions, short breaks and long breaks.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-mode="focus">
+  <main class="app">
+    <header class="header">
+      <h1 class="header__title">Pomodoro</h1>
+      <button id="settings-toggle" class="icon-btn" type="button"
+              aria-label="Open settings" aria-expanded="false" aria-controls="settings-panel">&#9881;</button>
+    </header>
+
+    <nav class="modes" role="tablist" aria-label="Timer mode">
+      <button class="modes__btn" role="tab" type="button" data-mode="focus" aria-selected="true">Focus</button>
+      <button class="modes__btn" role="tab" type="button" data-mode="shortBreak" aria-selected="false">Short Break</button>
+      <button class="modes__btn" role="tab" type="button" data-mode="longBreak" aria-selected="false">Long Break</button>
+    </nav>
+
+    <section class="timer" aria-label="Countdown">
+      <svg class="ring" viewBox="0 0 300 300" aria-hidden="true">
+        <circle class="ring__track" cx="150" cy="150" r="130"></circle>
+        <circle id="ring-progress" class="ring__progress" cx="150" cy="150" r="130"></circle>
+      </svg>
+      <div class="timer__center">
+        <div id="time-display" class="timer__time" role="timer">25:00</div>
+        <div id="mode-label" class="timer__label">Focus</div>
+      </div>
+    </section>
+
+    <div id="cycle-dots" class="dots" role="img" aria-label="Sessions completed in this cycle"></div>
+
+    <div class="controls">
+      <button id="reset-btn" class="btn btn--ghost" type="button">Reset</button>
+      <button id="start-btn" class="btn btn--primary" type="button">Start</button>
+      <button id="skip-btn" class="btn btn--ghost" type="button">Skip</button>
+    </div>
+
+    <section class="stats" aria-label="Today's stats">
+      <div class="stats__item">
+        <span id="stat-sessions" class="stats__value">0</span>
+        <span class="stats__label">Sessions today</span>
+      </div>
+      <div class="stats__item">
+        <span id="stat-focus" class="stats__value">0m</span>
+        <span class="stats__label">Focused today</span>
+      </div>
+    </section>
+
+    <section id="settings-panel" class="settings" hidden>
+      <h2 class="settings__title">Settings</h2>
+      <form id="settings-form" novalidate>
+        <label class="field">
+          <span>Focus (minutes)</span>
+          <input id="set-focus" type="number" min="1" max="120" inputmode="numeric">
+        </label>
+        <label class="field">
+          <span>Short break (minutes)</span>
+          <input id="set-short" type="number" min="1" max="60" inputmode="numeric">
+        </label>
+        <label class="field">
+          <span>Long break (minutes)</span>
+          <input id="set-long" type="number" min="1" max="90" inputmode="numeric">
+        </label>
+        <label class="field">
+          <span>Sessions before long break</span>
+          <input id="set-sessions" type="number" min="2" max="8" inputmode="numeric">
+        </label>
+        <label class="check">
+          <input id="set-sound" type="checkbox">
+          <span>Play a sound when a session ends</span>
+        </label>
+        <label class="check">
+          <input id="set-auto" type="checkbox">
+          <span>Start the next session automatically</span>
+        </label>
+        <div class="settings__actions">
+          <button type="submit" class="btn btn--primary">Save</button>
+          <button id="settings-defaults" type="button" class="btn btn--ghost">Restore defaults</button>
+        </div>
+      </form>
+    </section>
+
+    <p class="help">
+      <kbd>Space</kbd> start / pause &middot; <kbd>R</kbd> reset &middot; <kbd>S</kbd> skip
+    </p>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/format.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/cycle.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/notifier.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
