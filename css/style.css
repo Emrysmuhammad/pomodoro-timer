@@ -1,0 +1,221 @@
+:root {
+  --bg: #0b1020;
+  --panel: #131a30;
+  --panel-border: #222c4a;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #f87171;
+}
+
+* { box-sizing: border-box; }
+
+/* Make sure the hidden attribute always wins over display rules */
+[hidden] { display: none !important; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(circle at top, #151d3a, var(--bg) 60%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.app {
+  width: 100%;
+  max-width: 440px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.icon-btn:hover { border-color: var(--accent); }
+
+/* ---------- Mode tabs ---------- */
+.modes {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  margin-bottom: 24px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+}
+
+.modes__btn {
+  flex: 1;
+  padding: 10px 4px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modes__btn:hover { color: var(--text); }
+
+.modes__btn[aria-selected="true"] {
+  background: var(--accent);
+  color: #0b1020;
+}
+
+/* ---------- Timer ring ---------- */
+.timer {
+  position: relative;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring__track,
+.ring__progress {
+  fill: none;
+  stroke-width: 12;
+}
+
+.ring__track { stroke: var(--panel-border); }
+
+.ring__progress {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear, stroke 0.3s;
+}
+
+.timer__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer__time {
+  font-size: clamp(3rem, 16vw, 4.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.timer__label {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---------- Cycle dots ---------- */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  min-height: 10px;
+  margin: 22px 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--panel-border);
+  transition: background 0.2s;
+}
+
+.dot.is-filled { background: var(--accent); }
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.05s;
+}
+
+.btn:hover { filter: brightness(1.12); }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  min-width: 130px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0b1020;
+}
+
+.btn--ghost {
+  background: var(--panel);
+  color: var(--text);
+}
+
+/* ---------- Help ---------- */
+.help {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+kbd {
+  padding: 1px 7px;
+  margin: 0 2px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+}
