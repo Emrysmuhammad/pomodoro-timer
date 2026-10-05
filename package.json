@@ -1,0 +1,11 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "A focus timer using the Pomodoro technique, built with vanilla HTML, CSS and JavaScript.",
+  "main": "index.html",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": ["pomodoro", "timer", "productivity", "javascript", "html5"],
+  "license": "MIT"
+}
